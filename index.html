@@ -489,219 +489,22 @@ function changeQuote() {
 // ═══════════════════════════════════════════
 // SPLASH & MUSIC
 // ═══════════════════════════════════════════
-// 
+const audio = document.getElementById('bgMusic');
 
+  const songs = [
+    "audio/Tum Ho Toh - Saiyaara_128-(PagalWorld.Org.Im).mp3",
+    "audio/videoplayback (1).m4a",
+    "audio/videoplayback (2).m4a",
+    "audio/videoplayback (3).m4a",
+    "audio/videoplayback.m4a",
+  ];
 
-<audio id="bgMusic" preload="auto"></audio>
+  // Random song every refresh
+  const randomSong = songs[Math.floor(Math.random() * songs.length)];
+  audio.src = randomSong;
 
-// ═══════════════════════════════════════════
-// FINAL PROFESSIONAL MUSIC SYSTEM
-// ═══════════════════════════════════════════
-
-const audio = document.getElementById("bgMusic");
-
-const songs = [
-  "audio/Tum Ho Toh - Saiyaara_128-(PagalWorld.Org.Im).mp3",
-  "audio/videoplayback (1).m4a",
-  "audio/videoplayback (2).m4a",
-  "audio/videoplayback (3).m4a",
-  "audio/videoplayback.m4a"
-];
 
 let musicPlaying = false;
-let currentSongIndex = Math.floor(Math.random() * songs.length);
-let userPaused = false;
-
-// First random song on refresh
-audio.src = songs[currentSongIndex];
-audio.volume = 0;
-
-//═══════════════════════════════════════════
-// ENTER PAGE → Start Music
-//═══════════════════════════════════════════
-function enterPage() {
-
-  audio.play().then(() => {
-    musicPlaying = true;
-    userPaused = false;
-    fadeInMusic();
-    updateMusicBars(true);
-  }).catch(() => {});
-
-  document.getElementById('splash').classList.add('hide');
-  document.getElementById('mainPage').classList.add('show');
-
-  setTimeout(() => {
-    document.getElementById('splash').style.display = 'none';
-  }, 1000);
-}
-
-//═══════════════════════════════════════════
-// MUSIC BUTTON TOGGLE
-//═══════════════════════════════════════════
-function toggleMusic() {
-
-  if (musicPlaying) {
-    audio.pause();
-    musicPlaying = false;
-    userPaused = true;
-    updateMusicBars(false);
-  } else {
-    audio.play().then(() => {
-      musicPlaying = true;
-      userPaused = false;
-      updateMusicBars(true);
-    });
-  }
-
-}
-
-//═══════════════════════════════════════════
-// SONG END → NEXT SONG
-//═══════════════════════════════════════════
-audio.addEventListener("ended", () => {
-
-  // only if page visible + user not paused
-  if (document.visibilityState === "visible" && !userPaused) {
-    playNextSong();
-  }
-
-});
-
-//═══════════════════════════════════════════
-// TAB HIDDEN / BACK
-//═══════════════════════════════════════════
-document.addEventListener("visibilitychange", () => {
-
-  if (document.visibilityState === "visible") {
-
-    // if song ended while hidden
-    if (audio.ended && !userPaused) {
-      playNextSong();
-    }
-
-  }
-
-});
-
-//═══════════════════════════════════════════
-// NEXT SONG FUNCTION
-//═══════════════════════════════════════════
-function playNextSong() {
-
-  let nextIndex;
-
-  do {
-    nextIndex = Math.floor(Math.random() * songs.length);
-  } while (nextIndex === currentSongIndex && songs.length > 1);
-
-  currentSongIndex = nextIndex;
-
-  fadeOutMusic(() => {
-    audio.src = songs[currentSongIndex];
-    audio.load();
-
-    audio.play().then(() => {
-      fadeInMusic();
-      musicPlaying = true;
-      updateMusicBars(true);
-    });
-  });
-
-}
-
-//═══════════════════════════════════════════
-// FADE IN
-//═══════════════════════════════════════════
-function fadeInMusic() {
-
-  clearInterval(audio.fadeInterval);
-
-  let vol = audio.volume;
-
-  audio.fadeInterval = setInterval(() => {
-    vol += 0.02;
-
-    if (vol >= 0.45) {
-      vol = 0.45;
-      clearInterval(audio.fadeInterval);
-    }
-
-    audio.volume = vol;
-
-  }, 100);
-
-}
-
-//═══════════════════════════════════════════
-// FADE OUT
-//═══════════════════════════════════════════
-function fadeOutMusic(callback) {
-
-  clearInterval(audio.fadeInterval);
-
-  let vol = audio.volume;
-
-  audio.fadeInterval = setInterval(() => {
-    vol -= 0.03;
-
-    if (vol <= 0) {
-      vol = 0;
-      clearInterval(audio.fadeInterval);
-      audio.pause();
-      callback();
-    }
-
-    audio.volume = vol;
-
-  }, 80);
-
-}
-
-//═══════════════════════════════════════════
-// MUSIC BAR ANIMATION
-//═══════════════════════════════════════════
-function updateMusicBars(active) {
-
-  const bars = document.querySelectorAll('.music-bar');
-
-  bars.forEach(bar => {
-    if (active) {
-      bar.classList.remove("paused");
-    } else {
-      bar.classList.add("paused");
-    }
-  });
-
-}
-
-//═══════════════════════════════════════════
-// AUTO RESUME IF PLAY FAILS
-//═══════════════════════════════════════════
-audio.addEventListener("error", () => {
-  playNextSong();
-});
-
-
-
-
-// -------------------------------------------------------------------------------
-// const audio = document.getElementById('bgMusic');
-
-//   const songs = [
-//     "audio/Tum Ho Toh - Saiyaara_128-(PagalWorld.Org.Im).mp3",
-//     "audio/videoplayback (1).m4a",
-//     "audio/videoplayback (2).m4a",
-//     "audio/videoplayback (3).m4a",
-//     "audio/videoplayback.m4a",
-//   ];
-
-//   // Random song every refresh
-//   const randomSong = songs[Math.floor(Math.random() * songs.length)];
-//   audio.src = randomSong;
-
-
-// let musicPlaying = false;
 
 // Animate splash petals
 const splashColors = ['#f7b8c8','#e8849a','#d4607a','#f5d5de','#f5e0a0','#d4a259','#fce8ee'];
@@ -721,46 +524,46 @@ for (let i = 0; i < 22; i++) {
   splashPetals.appendChild(sp);
 }
 
-// function enterPage() {
-//   // Start music with gradual fade-in
-//   audio.volume = 0;
-//   audio.play().then(() => {
-//     musicPlaying = true;
-//     fadeInMusic();
-//   }).catch(() => {
-//     // Autoplay blocked — music button still works
-//   });
+function enterPage() {
+  // Start music with gradual fade-in
+  audio.volume = 0;
+  audio.play().then(() => {
+    musicPlaying = true;
+    fadeInMusic();
+  }).catch(() => {
+    // Autoplay blocked — music button still works
+  });
 
-//   // Hide splash, show page
-//   document.getElementById('splash').classList.add('hide');
-//   document.getElementById('mainPage').classList.add('show');
+  // Hide splash, show page
+  document.getElementById('splash').classList.add('hide');
+  document.getElementById('mainPage').classList.add('show');
 
-//   setTimeout(() => {
-//     document.getElementById('splash').style.display = 'none';
-//   }, 1000);
-// }
+  setTimeout(() => {
+    document.getElementById('splash').style.display = 'none';
+  }, 1000);
+}
 
-// function fadeInMusic() {
-//   let v = 0;
-//   const interval = setInterval(() => {
-//     v = Math.min(v + 0.02, 0.45);
-//     audio.volume = v;
-//     if (v >= 0.45) clearInterval(interval);
-//   }, 150);
-// }
+function fadeInMusic() {
+  let v = 0;
+  const interval = setInterval(() => {
+    v = Math.min(v + 0.02, 0.45);
+    audio.volume = v;
+    if (v >= 0.45) clearInterval(interval);
+  }, 150);
+}
 
-// function toggleMusic() {
-//   const bars = document.querySelectorAll('.music-bar');
-//   if (musicPlaying) {
-//     audio.pause();
-//     musicPlaying = false;
-//     bars.forEach(b => b.classList.add('paused'));
-//   } else {
-//     audio.play();
-//     musicPlaying = true;
-//     bars.forEach(b => b.classList.remove('paused'));
-//   }
-// }
+function toggleMusic() {
+  const bars = document.querySelectorAll('.music-bar');
+  if (musicPlaying) {
+    audio.pause();
+    musicPlaying = false;
+    bars.forEach(b => b.classList.add('paused'));
+  } else {
+    audio.play();
+    musicPlaying = true;
+    bars.forEach(b => b.classList.remove('paused'));
+  }
+}
 
 // ═══════════════════════════════════════════
 // COUNTDOWN — client local time, April 29
