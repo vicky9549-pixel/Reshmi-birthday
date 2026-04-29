@@ -1,654 +1,1725 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Happy Birthday Reshmi 🌹</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Josefin+Sans:wght@100;300;400&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --rose: #c8536a; --rose-light: #f7d0d9; --rose-dark: #7a2d3e;
-  --gold: #d4a259; --gold-light: #f5e6cc;
-  --cream: #fdf6f0; --blush: #fce8ee;
-  --text-dark: #3a1a22; --text-mid: #7a4a55;
-}
-html, body { width: 100%; min-height: 100vh; overflow-x: hidden; }
-body { background: var(--cream); font-family: 'Josefin Sans', sans-serif; color: var(--text-dark); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Happy Birthday Reshmi 🌹</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Josefin+Sans:wght@100;300;400&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* ══════════════════════════════
-   SPLASH SCREEN
-══════════════════════════════ */
-#splash {
-  position: fixed; inset: 0; z-index: 999;
-  background: linear-gradient(160deg, #3a1020 0%, #6e2040 40%, #3a1a22 100%);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  cursor: pointer; transition: opacity 0.9s ease;
-}
-#splash.hide { opacity: 0; pointer-events: none; }
+    :root {
+      --rose: #c8536a;
+      --rose-light: #f7d0d9;
+      --rose-dark: #7a2d3e;
+      --gold: #d4a259;
+      --gold-light: #f5e6cc;
+      --cream: #fdf6f0;
+      --blush: #fce8ee;
+      --text-dark: #3a1a22;
+      --text-mid: #7a4a55;
+    }
 
-.splash-petals { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.sp { position: absolute; border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; opacity: 0; animation: sp-fall linear infinite; }
-@keyframes sp-fall {
-  0%   { transform: translateY(-40px) rotate(0deg);   opacity: 0; }
-  10%  { opacity: 0.6; }
-  90%  { opacity: 0.4; }
-  100% { transform: translateY(110vh) rotate(540deg); opacity: 0; }
-}
+    html,
+    body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-.splash-rose {
-  width: 100px; height: 100px;
-  animation: splash-float 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px rgba(247,176,197,0.6));
-  margin-bottom: 28px;
-}
-@keyframes splash-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    body {
+      background: var(--cream);
+      font-family: 'Josefin Sans', sans-serif;
+      color: var(--text-dark);
+    }
 
-.splash-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 52px; font-weight: 300; font-style: italic;
-  color: #fce8ee; letter-spacing: 2px;
-  text-shadow: 0 0 40px rgba(247,176,197,0.5);
-  margin-bottom: 8px;
-}
-.splash-sub {
-  font-size: 10px; letter-spacing: 6px; text-transform: uppercase;
-  color: rgba(252,232,238,0.5); margin-bottom: 48px;
-}
-.splash-btn {
-  border: 1px solid rgba(252,232,238,0.4);
-  border-radius: 50px; padding: 14px 36px;
-  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
-  color: #fce8ee; background: rgba(255,255,255,0.07);
-  backdrop-filter: blur(10px); cursor: pointer;
-  animation: pulse-btn 2.5s ease-in-out infinite;
-  transition: background 0.3s;
-}
-.splash-btn:hover { background: rgba(255,255,255,0.15); }
-@keyframes pulse-btn { 0%,100%{box-shadow:0 0 0 0 rgba(252,232,238,0.3)} 50%{box-shadow:0 0 0 10px rgba(252,232,238,0)} }
+    /* ══ SPLASH ══ */
+    #splash {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: linear-gradient(160deg, #3a1020 0%, #6e2040 40%, #3a1a22 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 0.9s ease;
+    }
 
-.splash-hearts {
-  position: absolute; bottom: 40px;
-  display: flex; gap: 10px;
-}
-.splash-hearts span { color: rgba(252,232,238,0.4); font-size: 14px; animation: heart-beat 1.5s ease-in-out infinite; }
-.splash-hearts span:nth-child(2) { animation-delay: 0.3s; font-size: 20px; color: rgba(252,232,238,0.6); }
-.splash-hearts span:nth-child(3) { animation-delay: 0.6s; }
+    #splash.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
 
-/* MUSIC TOGGLE */
-#musicBtn {
-  position: fixed; bottom: 22px; right: 22px; z-index: 100;
-  width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(255,255,255,0.8); border: 1px solid rgba(200,83,106,0.2);
-  backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center;
-  cursor: pointer; box-shadow: 0 4px 16px rgba(200,83,106,0.15);
-  transition: transform 0.2s, background 0.2s;
-}
-#musicBtn:hover { transform: scale(1.1); background: var(--blush); }
-#musicBtn svg { width: 18px; height: 18px; color: var(--rose); }
-.music-bars { display: flex; gap: 2px; align-items: flex-end; height: 16px; }
-.music-bar { width: 3px; background: var(--rose); border-radius: 2px; animation: bar-dance 0.6s ease-in-out infinite alternate; }
-.music-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
-.music-bar:nth-child(2) { height: 14px; animation-delay: 0.15s; }
-.music-bar:nth-child(3) { height: 10px; animation-delay: 0.3s; }
-.music-bar:nth-child(4) { height: 16px; animation-delay: 0.1s; }
-.music-bar.paused { animation: none; height: 4px !important; }
-@keyframes bar-dance { from{transform:scaleY(0.4)} to{transform:scaleY(1)} }
+    .splash-petals {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
 
-/* ══════════════════════════════
-   CANVAS & BG
-══════════════════════════════ */
-#petalCanvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
-.bg-glow { position:fixed; border-radius:50%; pointer-events:none; filter:blur(80px); opacity:0.35; z-index:0; }
-.bg-glow.g1 { width:320px; height:320px; background:#f7b8c8; top:-60px; left:-80px; }
-.bg-glow.g2 { width:280px; height:280px; background:#f5e0a0; bottom:80px; right:-60px; }
-.bg-glow.g3 { width:200px; height:200px; background:#e8a0b8; top:50%; left:50%; transform:translate(-50%,-50%); }
+    .sp {
+      position: absolute;
+      border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+      opacity: 0;
+      animation: sp-fall linear infinite;
+    }
 
-/* ══════════════════════════════
-   MAIN PAGE
-══════════════════════════════ */
-#mainPage { opacity: 0; transition: opacity 1.2s ease; }
-#mainPage.show { opacity: 1; }
+    @keyframes sp-fall {
+      0% {
+        transform: translateY(-40px) rotate(0deg);
+        opacity: 0;
+      }
 
-.container { position:relative; z-index:2; max-width:420px; margin:0 auto; padding:0 20px 80px; display:flex; flex-direction:column; align-items:center; }
+      10% {
+        opacity: 0.6;
+      }
 
-/* HEADER */
-.header { width:100%; text-align:center; padding-top:52px; padding-bottom:10px; }
-.sparkle-line { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:18px; }
-.sparkle-line .line { height:1px; width:60px; background:linear-gradient(90deg,transparent,var(--rose),transparent); }
-.sparkle-line .dot { width:5px; height:5px; border-radius:50%; background:var(--gold); box-shadow:0 0 6px var(--gold); animation:pulse-dot 2s ease-in-out infinite; }
-@keyframes pulse-dot { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.5);opacity:0.6} }
-.pre-title { font-weight:100; font-size:11px; letter-spacing:5px; text-transform:uppercase; color:var(--rose); margin-bottom:14px; }
-.main-title { font-family:'Cormorant Garamond',serif; font-size:56px; font-weight:300; line-height:1.1; color:var(--text-dark); letter-spacing:-1px; margin-bottom:8px; }
-.main-title span { font-style:italic; color:var(--rose); }
-.sub-title { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:300; font-style:italic; color:var(--text-mid); margin-bottom:4px; }
-.age-tag { display:inline-block; margin-top:10px; background:var(--blush); border:1px solid rgba(200,83,106,0.2); border-radius:30px; padding:5px 18px; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--rose); }
+      90% {
+        opacity: 0.4;
+      }
 
-/* PHOTO FRAME */
-.photo-section { width:100%; margin:28px 0 20px; }
-.photo-frame-wrap { position:relative; width:200px; height:200px; margin:0 auto; }
-.photo-frame { width:200px; height:200px; border-radius:50%; border:3px solid var(--rose-light); box-shadow:0 0 0 6px rgba(200,83,106,0.08),0 12px 40px rgba(200,83,106,0.25); overflow:hidden; background:var(--blush); display:flex; align-items:center; justify-content:center; position:relative; animation:float-anim 4s ease-in-out infinite; }
-.photo-frame img { width:100%; height:100%; object-fit:cover; }
-/* ── REPLACE src BELOW WITH YOUR PHOTO ── */
-.photo-ring { position:absolute; top:-8px; left:-8px; right:-8px; bottom:-8px; border-radius:50%; border:1px dashed rgba(200,83,106,0.35); animation:spin-ring 18s linear infinite; pointer-events:none; }
-.photo-ring-2 { position:absolute; top:-14px; left:-14px; right:-14px; bottom:-14px; border-radius:50%; border:1px solid rgba(212,162,89,0.2); animation:spin-ring 28s linear infinite reverse; pointer-events:none; }
-@keyframes spin-ring { to{transform:rotate(360deg)} }
-.photo-glow { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:160px; height:160px; border-radius:50%; background:radial-gradient(circle,rgba(247,176,197,0.5) 0%,transparent 70%); animation:glow-pulse 3s ease-in-out infinite; z-index:-1; pointer-events:none; }
-@keyframes glow-pulse { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.6} 50%{transform:translate(-50%,-50%) scale(1.4);opacity:1} }
-@keyframes float-anim { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-8px) rotate(1deg)} }
+      100% {
+        transform: translateY(110vh) rotate(540deg);
+        opacity: 0;
+      }
+    }
 
-/* Photo navigation for multiple photos */
-.photo-nav { display:flex; gap:10px; justify-content:center; margin-top:14px; }
-.photo-dot { width:8px; height:8px; border-radius:50%; background:var(--rose-light); border:1px solid var(--rose); cursor:pointer; transition:all 0.3s; }
-.photo-dot.active { background:var(--rose); transform:scale(1.2); }
-.photo-nav-btns { display:none; gap:12px; justify-content:center; margin-top:8px; }
-.photo-nav-btn { background:rgba(255,255,255,0.8); border:1px solid rgba(200,83,106,0.2); border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; color:var(--rose); transition:all 0.2s; backdrop-filter:blur(8px); }
+    .splash-rose {
+      width: 90px;
+      height: 90px;
+      animation: splash-float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 30px rgba(247, 176, 197, 0.6));
+      margin-bottom: 22px;
+    }
 
-/* DYNAMIC QUOTE */
-.refresh-quote { width:100%; background:linear-gradient(135deg,rgba(255,255,255,0.75),rgba(252,232,238,0.6)); border:1px solid rgba(200,83,106,0.12); border-radius:20px; padding:22px 22px 18px; margin:18px 0; backdrop-filter:blur(12px); box-shadow:0 8px 32px rgba(200,83,106,0.08),inset 0 1px 0 rgba(255,255,255,0.9); position:relative; overflow:hidden; }
-.refresh-quote::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--rose-light),var(--rose),var(--gold),var(--rose-light)); }
-.rq-label { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--rose); opacity:0.7; margin-bottom:12px; display:flex; align-items:center; gap:6px; }
-.rq-label::after { content:''; flex:1; height:1px; background:rgba(200,83,106,0.15); }
-.rq-text { font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; line-height:1.75; color:var(--text-dark); transition:opacity 0.5s; }
-.rq-refresh { display:flex; align-items:center; justify-content:flex-end; gap:5px; margin-top:12px; cursor:pointer; color:var(--rose); opacity:0.5; transition:opacity 0.2s; user-select:none; }
-.rq-refresh:hover { opacity:1; }
-.rq-refresh span { font-size:9px; letter-spacing:2px; text-transform:uppercase; }
+    @keyframes splash-float {
 
-/* DATE */
-.date-display { margin:24px 0 6px; display:flex; align-items:center; justify-content:center; gap:14px; }
-.date-num { font-family:'Cormorant Garamond',serif; font-size:64px; font-weight:300; color:var(--rose); line-height:1; }
-.date-info { text-align:left; }
-.date-month { font-size:13px; letter-spacing:4px; text-transform:uppercase; color:var(--text-dark); font-weight:300; display:block; margin-bottom:2px; }
-.date-year { font-size:11px; letter-spacing:3px; color:var(--text-mid); font-weight:100; }
+      0%,
+      100% {
+        transform: translateY(0)
+      }
 
-/* DIVIDER */
-.divider { display:flex; align-items:center; gap:8px; width:100%; margin:8px 0; }
-.divider-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(200,83,106,0.3),transparent); }
-.divider-icon { color:var(--rose); font-size:14px; opacity:0.7; }
+      50% {
+        transform: translateY(-12px)
+      }
+    }
 
-/* COUNTDOWN */
-.countdown-section { width:100%; margin:18px 0 10px; text-align:center; }
-.countdown-label { font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--text-mid); margin-bottom:22px; }
-.countdown-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; width:100%; }
-.count-card { background:rgba(255,255,255,0.7); border:1px solid rgba(200,83,106,0.15); border-radius:16px; padding:14px 6px; backdrop-filter:blur(10px); position:relative; overflow:hidden; box-shadow:0 4px 20px rgba(200,83,106,0.1),inset 0 1px 0 rgba(255,255,255,0.8); transition:transform 0.3s; }
-.count-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--rose-light),var(--rose),var(--gold)); border-radius:16px 16px 0 0; }
-.count-card:hover { transform:translateY(-3px); }
-.count-number { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:300; color:var(--rose-dark); line-height:1; display:block; margin-bottom:4px; }
-.count-unit { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-mid); }
-.progress-wrap { width:100%; margin:18px 0 6px; }
-.progress-label { display:flex; justify-content:space-between; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-mid); margin-bottom:8px; }
-.progress-track { height:4px; background:rgba(200,83,106,0.1); border-radius:10px; overflow:hidden; }
-.progress-fill { height:100%; background:linear-gradient(90deg,var(--rose-light),var(--rose),var(--gold)); border-radius:10px; transition:width 1.5s cubic-bezier(0.4,0,0.2,1); }
+    .splash-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 300;
+      font-style: italic;
+      color: #fce8ee;
+      letter-spacing: 2px;
+      text-shadow: 0 0 40px rgba(247, 176, 197, 0.5);
+      margin-bottom: 6px;
+    }
 
-.birthday-now { display:none; flex-direction:column; align-items:center; text-align:center; width:100%; margin:20px 0; animation:fade-in-up 1s ease; }
-.birthday-big { font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:300; font-style:italic; color:var(--rose); line-height:1.2; text-shadow:0 0 40px rgba(200,83,106,0.4); margin-bottom:10px; }
+    .splash-bday {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: rgba(252, 232, 238, 0.7);
+      margin-bottom: 8px;
+    }
 
-/* HEARTS */
-.hearts-row { display:flex; justify-content:center; gap:12px; margin:10px 0 20px; }
-.heart { color:var(--rose); font-size:16px; animation:heart-beat 1.5s ease-in-out infinite; }
-.heart:nth-child(2) { animation-delay:0.3s; font-size:22px; }
-.heart:nth-child(3) { animation-delay:0.6s; }
-@keyframes heart-beat { 0%,100%{transform:scale(1)} 15%{transform:scale(1.3)} 30%{transform:scale(1)} }
+    .splash-sub {
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: rgba(252, 232, 238, 0.45);
+      margin-bottom: 44px;
+    }
 
-/* SCROLL HINT */
-.scroll-hint { margin:20px auto 0; display:flex; flex-direction:column; align-items:center; gap:6px; opacity:0.4; animation:bounce-hint 2s ease-in-out infinite; }
-.scroll-hint span { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-mid); }
-.scroll-arrow { width:16px; height:16px; border-right:1px solid var(--rose); border-bottom:1px solid var(--rose); transform:rotate(45deg); }
-@keyframes bounce-hint { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+    .splash-btn {
+      border: 1px solid rgba(252, 232, 238, 0.4);
+      border-radius: 50px;
+      padding: 14px 36px;
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #fce8ee;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      animation: pulse-btn 2.5s ease-in-out infinite;
+      transition: background 0.3s;
+    }
 
-/* WISHES */
-.wishes-section { width:100%; margin:28px 0 10px; }
-.wishes-title { text-align:center; margin-bottom:24px; }
-.wishes-title .tag { font-size:9px; letter-spacing:5px; text-transform:uppercase; color:var(--rose); display:block; margin-bottom:8px; }
-.wishes-title h2 { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; font-style:italic; color:var(--text-dark); }
+    .splash-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
 
-.wish-card { width:100%; background:rgba(255,255,255,0.65); border:1px solid rgba(200,83,106,0.1); border-radius:22px; padding:28px 24px 22px; margin-bottom:18px; backdrop-filter:blur(12px); box-shadow:0 6px 24px rgba(200,83,106,0.07),inset 0 1px 0 rgba(255,255,255,0.9); position:relative; overflow:hidden; opacity:0; transform:translateY(30px); transition:opacity 0.7s ease,transform 0.7s ease; }
-.wish-card.visible { opacity:1; transform:translateY(0); }
-.wish-card::after { content:'"'; font-family:'Cormorant Garamond',serif; font-size:100px; color:rgba(200,83,106,0.07); position:absolute; top:-5px; left:14px; line-height:1; pointer-events:none; }
-.accent-bar { position:absolute; left:0; top:20px; bottom:20px; width:3px; border-radius:0 3px 3px 0; background:linear-gradient(180deg,var(--rose-light),var(--rose),var(--gold)); }
-.wish-icon { font-size:18px; margin-bottom:10px; display:block; }
-.wish-text { font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; line-height:1.75; color:var(--text-dark); position:relative; z-index:1; }
-.wish-from { margin-top:14px; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--rose); opacity:0.7; text-align:right; }
+    @keyframes pulse-btn {
 
-/* GALLERY CARDS */
-.gallery-wish { padding:0; overflow:hidden; }
-.gallery-wish .accent-bar,.gallery-wish::after { display:none; }
-.gallery-img-full { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; border-radius:22px 22px 0 0; }
-/* ── REPLACE src BELOW WITH YOUR MEMORY PHOTOS ── */
-.gallery-caption { padding:16px 22px 18px; font-family:'Cormorant Garamond',serif; font-size:16px; font-style:italic; color:var(--text-mid); text-align:center; }
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(252, 232, 238, 0.3)
+      }
 
-.footer-text { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--text-mid); opacity:0.5; margin-top:24px; }
-.confetti-piece { position:fixed; pointer-events:none; z-index:100; border-radius:2px; animation:confetti-fall linear forwards; }
-@keyframes confetti-fall { 0%{transform:translateY(-20px) rotate(0deg);opacity:1} 100%{transform:translateY(100vh) rotate(720deg);opacity:0} }
-@keyframes fade-in-up { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-</style>
+      50% {
+        box-shadow: 0 0 0 12px rgba(252, 232, 238, 0)
+      }
+    }
+
+    .splash-hearts {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .splash-hearts span {
+      color: rgba(252, 232, 238, 0.4);
+      font-size: 14px;
+      animation: heart-beat 1.5s ease-in-out infinite;
+    }
+
+    .splash-hearts span:nth-child(2) {
+      animation-delay: 0.3s;
+      font-size: 20px;
+      color: rgba(252, 232, 238, 0.65);
+    }
+
+    .splash-hearts span:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    /* ══ MUSIC BTN ══ */
+    #musicBtn {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 100;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(200, 83, 106, 0.2);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(200, 83, 106, 0.15);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    #musicBtn:hover {
+      transform: scale(1.1);
+      background: var(--blush);
+    }
+
+    .music-bars {
+      display: flex;
+      gap: 2px;
+      align-items: flex-end;
+      height: 16px;
+    }
+
+    .music-bar {
+      width: 3px;
+      background: var(--rose);
+      border-radius: 2px;
+      animation: bar-dance 0.6s ease-in-out infinite alternate;
+    }
+
+    .music-bar:nth-child(1) {
+      height: 8px;
+      animation-delay: 0s;
+    }
+
+    .music-bar:nth-child(2) {
+      height: 14px;
+      animation-delay: 0.15s;
+    }
+
+    .music-bar:nth-child(3) {
+      height: 10px;
+      animation-delay: 0.3s;
+    }
+
+    .music-bar:nth-child(4) {
+      height: 16px;
+      animation-delay: 0.1s;
+    }
+
+    .music-bar.paused {
+      animation: none;
+      height: 4px !important;
+    }
+
+    @keyframes bar-dance {
+      from {
+        transform: scaleY(0.4)
+      }
+
+      to {
+        transform: scaleY(1)
+      }
+    }
+
+    /* ══ BG / CANVAS ══ */
+    #petalCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #fireworkCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .bg-glow {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(80px);
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    .bg-glow.g1 {
+      width: 320px;
+      height: 320px;
+      background: #f7b8c8;
+      top: -60px;
+      left: -80px;
+    }
+
+    .bg-glow.g2 {
+      width: 280px;
+      height: 280px;
+      background: #f5e0a0;
+      bottom: 80px;
+      right: -60px;
+    }
+
+    .bg-glow.g3 {
+      width: 200px;
+      height: 200px;
+      background: #e8a0b8;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* ══ MAIN PAGE ══ */
+    #mainPage {
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    #mainPage.show {
+      opacity: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ══ HEADER ══ */
+    .header {
+      width: 100%;
+      text-align: center;
+      padding-top: 52px;
+      padding-bottom: 10px;
+    }
+
+    .sparkle-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .sparkle-line .line {
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, var(--rose), transparent);
+    }
+
+    .sparkle-line .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 6px var(--gold);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1
+      }
+
+      50% {
+        transform: scale(1.5);
+        opacity: 0.6
+      }
+    }
+
+    .pre-title {
+      font-weight: 100;
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 14px;
+    }
+
+    .main-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px;
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--text-dark);
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .main-title span {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .sub-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-mid);
+      margin-bottom: 4px;
+    }
+
+    .age-tag {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--blush);
+      border: 1px solid rgba(200, 83, 106, 0.2);
+      border-radius: 30px;
+      padding: 5px 18px;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    /* ══ CELEBRATION BANNER ══ */
+    .celebration-banner {
+      width: 100%;
+      margin: 28px 0 10px;
+      text-align: center;
+      animation: fade-in-up 1s ease;
+    }
+
+    .cb-top {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 14px;
+      opacity: 0.8;
+    }
+
+    .cb-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--rose-dark);
+      line-height: 1.15;
+      text-shadow: 0 0 40px rgba(200, 83, 106, 0.2);
+      margin-bottom: 10px;
+    }
+
+    .cb-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-style: italic;
+      color: var(--text-mid);
+      margin-bottom: 18px;
+    }
+
+    .cb-age-bubble {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+      color: white;
+      border-radius: 50px;
+      padding: 10px 24px;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      box-shadow: 0 8px 24px rgba(200, 83, 106, 0.35);
+      animation: bubble-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      animation-delay: 0.4s;
+    }
+
+    @keyframes bubble-pop {
+      from {
+        transform: scale(0);
+        opacity: 0
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+
+    /* ══ PHOTO FRAME ══ */
+    .photo-section {
+      width: 100%;
+      margin: 28px 0 20px;
+    }
+
+    .photo-frame-wrap {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+    }
+
+    .photo-frame {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 3px solid var(--rose-light);
+      box-shadow: 0 0 0 6px rgba(200, 83, 106, 0.08), 0 12px 40px rgba(200, 83, 106, 0.25);
+      overflow: hidden;
+      background: var(--blush);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: float-anim 4s ease-in-out infinite;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-ring {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      border-radius: 50%;
+      border: 1px dashed rgba(200, 83, 106, 0.35);
+      animation: spin-ring 18s linear infinite;
+      pointer-events: none;
+    }
+
+    .photo-ring-2 {
+      position: absolute;
+      top: -14px;
+      left: -14px;
+      right: -14px;
+      bottom: -14px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 162, 89, 0.2);
+      animation: spin-ring 28s linear infinite reverse;
+      pointer-events: none;
+    }
+
+    @keyframes spin-ring {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .photo-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(247, 176, 197, 0.5) 0%, transparent 70%);
+      animation: glow-pulse 3s ease-in-out infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @keyframes glow-pulse {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.4);
+        opacity: 1
+      }
+    }
+
+    @keyframes float-anim {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-1deg)
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(1deg)
+      }
+    }
+
+    /* ══ BIRTHDAY CAKE ══ */
+    .cake-section {
+      width: 100%;
+      margin: 10px 0 8px;
+      text-align: center;
+    }
+
+    .cake-label {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+
+    .cake-wrap {
+      position: relative;
+      display: inline-block;
+      filter: drop-shadow(0 8px 24px rgba(200, 83, 106, 0.2));
+    }
+
+    .cake-svg {
+      width: 180px;
+      height: 180px;
+    }
+
+    /* Candle flames */
+    .flame {
+      transform-origin: bottom center;
+      animation: flicker 0.4s ease-in-out infinite alternate;
+    }
+
+    .flame:nth-child(odd) {
+      animation-direction: alternate-reverse;
+    }
+
+    @keyframes flicker {
+      0% {
+        transform: scaleX(1) scaleY(1) rotate(-2deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scaleX(0.8) scaleY(1.2) rotate(2deg);
+        opacity: 0.85;
+      }
+    }
+
+    .flame.out {
+      display: none;
+    }
+
+    .cake-tap-hint {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose);
+      opacity: 0.55;
+      margin-top: 10px;
+      animation: bounce-hint 2s ease-in-out infinite;
+    }
+
+    .blow-msg {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--rose);
+      margin-top: 10px;
+      opacity: 0;
+      transition: opacity 0.6s;
+      min-height: 30px;
+    }
+
+    .blow-msg.show {
+      opacity: 1;
+    }
+
+    /* ══ SEALED LETTER ══ */
+    .letter-section {
+      width: 100%;
+      margin: 24px 0;
+    }
+
+    .letter-wrap {
+      position: relative;
+      cursor: pointer;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(200, 83, 106, 0.15);
+      transition: transform 0.3s;
+    }
+
+    .letter-wrap:hover {
+      transform: translateY(-3px);
+    }
+
+    /* closed state */
+    .letter-closed {
+      background: linear-gradient(135deg, #7a2d3e, #c8536a);
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      border-left: 50vw solid transparent;
+      border-right: 50vw solid transparent;
+      border-top: 54px solid rgba(200, 83, 106, 0.35);
+      max-width: 380px;
+    }
+
+    .letter-seal {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 4px 16px rgba(212, 162, 89, 0.5);
+      animation: seal-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes seal-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 4px 16px rgba(212, 162, 89, 0.5)
+      }
+
+      50% {
+        box-shadow: 0 4px 28px rgba(212, 162, 89, 0.9)
+      }
+    }
+
+    .letter-closed p {
+      color: rgba(252, 232, 238, 0.8);
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .letter-closed h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-style: italic;
+      color: #fce8ee;
+    }
+
+    .open-hint {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(252, 232, 238, 0.5);
+      margin-top: 12px;
+      animation: bounce-hint 2s infinite;
+    }
+
+    /* open state */
+    .letter-open {
+      display: none;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(200, 83, 106, 0.15);
+      padding: 32px 26px 26px;
+      animation: open-letter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes open-letter {
+      from {
+        transform: scaleY(0.2) translateY(-30px);
+        opacity: 0
+      }
+
+      to {
+        transform: scaleY(1) translateY(0);
+        opacity: 1
+      }
+    }
+
+    .letter-open::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rose-light), var(--rose), var(--gold));
+    }
+
+    .letter-dear {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--rose);
+      margin-bottom: 16px;
+    }
+
+    .letter-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      line-height: 1.85;
+      color: var(--text-dark);
+      font-style: italic;
+    }
+
+    .letter-sign {
+      margin-top: 20px;
+      text-align: right;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose);
+      opacity: 0.7;
+    }
+
+    .letter-rose-deco {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    /* ══ DYNAMIC QUOTE ══ */
+    .refresh-quote {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(252, 232, 238, 0.6));
+      border: 1px solid rgba(200, 83, 106, 0.12);
+      border-radius: 20px;
+      padding: 22px 22px 18px;
+      margin: 18px 0;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(200, 83, 106, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .refresh-quote::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rose-light), var(--rose), var(--gold), var(--rose-light));
+    }
+
+    .rq-label {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rose);
+      opacity: 0.7;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .rq-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(200, 83, 106, 0.15);
+    }
+
+    .rq-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.75;
+      color: var(--text-dark);
+      transition: opacity 0.5s;
+    }
+
+    .rq-refresh {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 5px;
+      margin-top: 12px;
+      cursor: pointer;
+      color: var(--rose);
+      opacity: 0.5;
+      transition: opacity 0.2s;
+      user-select: none;
+    }
+
+    .rq-refresh:hover {
+      opacity: 1;
+    }
+
+    .rq-refresh span {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ══ DIVIDER ══ */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      margin: 8px 0;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 83, 106, 0.3), transparent);
+    }
+
+    .divider-icon {
+      color: var(--rose);
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    /* ══ HEARTS ══ */
+    .hearts-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 10px 0 20px;
+    }
+
+    .heart {
+      color: var(--rose);
+      font-size: 16px;
+      animation: heart-beat 1.5s ease-in-out infinite;
+    }
+
+    .heart:nth-child(2) {
+      animation-delay: 0.3s;
+      font-size: 22px;
+    }
+
+    .heart:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes heart-beat {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      15% {
+        transform: scale(1.3)
+      }
+
+      30% {
+        transform: scale(1)
+      }
+    }
+
+    /* ══ SCROLL HINT ══ */
+    .scroll-hint {
+      margin: 20px auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.4;
+      animation: bounce-hint 2s ease-in-out infinite;
+    }
+
+    .scroll-hint span {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-mid);
+    }
+
+    .scroll-arrow {
+      width: 16px;
+      height: 16px;
+      border-right: 1px solid var(--rose);
+      border-bottom: 1px solid var(--rose);
+      transform: rotate(45deg);
+    }
+
+    @keyframes bounce-hint {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(6px)
+      }
+    }
+
+    /* ══ WISHES ══ */
+    .wishes-section {
+      width: 100%;
+      margin: 28px 0 10px;
+    }
+
+    .wishes-title {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .wishes-title .tag {
+      font-size: 9px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--rose);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .wishes-title h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-dark);
+    }
+
+    .wish-card {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(200, 83, 106, 0.1);
+      border-radius: 22px;
+      padding: 28px 24px 22px;
+      margin-bottom: 18px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 6px 24px rgba(200, 83, 106, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .wish-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .wish-card::after {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 100px;
+      color: rgba(200, 83, 106, 0.07);
+      position: absolute;
+      top: -5px;
+      left: 14px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .accent-bar {
+      position: absolute;
+      left: 0;
+      top: 20px;
+      bottom: 20px;
+      width: 3px;
+      border-radius: 0 3px 3px 0;
+      background: linear-gradient(180deg, var(--rose-light), var(--rose), var(--gold));
+    }
+
+    .wish-icon {
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .wish-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      line-height: 1.75;
+      color: var(--text-dark);
+      position: relative;
+      z-index: 1;
+    }
+
+    .wish-from {
+      margin-top: 14px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose);
+      opacity: 0.7;
+      text-align: right;
+    }
+
+    .gallery-wish {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .gallery-wish .accent-bar,
+    .gallery-wish::after {
+      display: none;
+    }
+
+    .gallery-img-full {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      border-radius: 22px 22px 0 0;
+    }
+
+    .gallery-caption {
+      padding: 16px 22px 18px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: var(--text-mid);
+      text-align: center;
+    }
+
+    /* ══ FOOTER ══ */
+    .footer-text {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      opacity: 0.5;
+      margin-top: 24px;
+    }
+
+    /* ══ CONFETTI ══ */
+    .confetti-piece {
+      position: fixed;
+      pointer-events: none;
+      z-index: 50;
+      border-radius: 2px;
+      animation: confetti-fall linear forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        opacity: 1
+      }
+
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0
+      }
+    }
+
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(30px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ══════════════════════════════
-     SPLASH SCREEN
-══════════════════════════════ -->
-<div id="splash" onclick="enterPage()">
-  <div class="splash-petals" id="splashPetals"></div>
-
-  <svg class="splash-rose" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
-    <path d="M80 140 Q76 120 72 100 Q68 85 70 70" stroke="#6b8a4e" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <path d="M73 95 Q60 85 55 72 Q68 76 73 95Z" fill="#7aaa5a" opacity="0.85"/>
-    <path d="M71 108 Q82 98 90 90 Q84 103 71 108Z" fill="#6b9950" opacity="0.75"/>
-    <ellipse cx="80" cy="62" rx="22" ry="26" fill="#d4607a" opacity="0.45" transform="rotate(-20,80,62)"/>
-    <ellipse cx="80" cy="62" rx="22" ry="26" fill="#d4607a" opacity="0.45" transform="rotate(20,80,62)"/>
-    <ellipse cx="80" cy="62" rx="22" ry="26" fill="#d4607a" opacity="0.45" transform="rotate(70,80,62)"/>
-    <ellipse cx="80" cy="60" rx="17" ry="21" fill="#e06b84" opacity="0.6" transform="rotate(0,80,60)"/>
-    <ellipse cx="80" cy="60" rx="17" ry="21" fill="#e06b84" opacity="0.6" transform="rotate(45,80,60)"/>
-    <ellipse cx="80" cy="60" rx="17" ry="21" fill="#e06b84" opacity="0.6" transform="rotate(90,80,60)"/>
-    <ellipse cx="80" cy="60" rx="17" ry="21" fill="#e06b84" opacity="0.6" transform="rotate(135,80,60)"/>
-    <ellipse cx="80" cy="58" rx="12" ry="15" fill="#ea7a90" transform="rotate(22,80,58)"/>
-    <ellipse cx="80" cy="58" rx="12" ry="15" fill="#ea7a90" transform="rotate(67,80,58)"/>
-    <ellipse cx="80" cy="58" rx="12" ry="15" fill="#ea7a90" transform="rotate(112,80,58)"/>
-    <circle cx="80" cy="56" r="9" fill="#f0a0b0"/>
-    <circle cx="80" cy="56" r="5" fill="#f5c0cc"/>
-    <circle cx="80" cy="55" r="2.5" fill="#fadddd"/>
-    <circle cx="78" cy="53" r="1" fill="#f5e6cc" opacity="0.9"/>
-    <circle cx="82" cy="54" r="0.8" fill="#d4a259" opacity="0.8"/>
-  </svg>
-
-  <p class="splash-name">Reshmi</p>
-  <p class="splash-sub">something special awaits</p>
-  <div class="splash-btn">✦ &nbsp; Open &nbsp; ✦</div>
-
-  <div class="splash-hearts">
-    <span>&#9829;</span><span>&#9829;</span><span>&#9829;</span>
-  </div>
-</div>
-
-<!-- MUSIC TOGGLE -->
-<div id="musicBtn" onclick="toggleMusic()" title="Music">
-  <div class="music-bars" id="musicBars">
-    <div class="music-bar"></div>
-    <div class="music-bar"></div>
-    <div class="music-bar"></div>
-    <div class="music-bar"></div>
-  </div>
-</div>
-
-<!-- AUDIO — romantic Hindi instrumental (Tum Hi Ho instrumental, free/open) -->
-<audio id="bgMusic" loop preload="auto">
-  <!--
-    ════════════════════════════════════════════════════════
-    TO USE YOUR OWN SONG:
-    Place your MP3 file in the same folder as this HTML file,
-    then replace the src below with the filename, e.g.:
-      <source src="reshmi_song.mp3" type="audio/mpeg">
-    ════════════════════════════════════════════════════════
-    The default below uses a free public romantic piano piece
-    from the Internet Archive (no copyright issues).
-  -->
-  <!-- <source src="https://ia800905.us.archive.org/16/items/TumHiHoAashiqui2/Tum%20Hi%20Ho%20-%20Aashiqui%202%20-%20Instrumental.mp3" type="audio/mpeg"> -->
-  <!-- <source src="https://open.spotify.com/track/1h94oLt0H03l3X9ffmAlmg" type="audio/mpeg"> -->
-  <!-- <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg"> -->
-</audio>
-
-<!-- BACKGROUND -->
-<div class="bg-glow g1"></div>
-<div class="bg-glow g2"></div>
-<div class="bg-glow g3"></div>
-<canvas id="petalCanvas"></canvas>
-
-<!-- MAIN PAGE -->
-<div id="mainPage">
-<div class="container">
-
-  <!-- HEADER -->
-  <div class="header">
-    <p class="pre-title">A Very Special Day Awaits</p>
-    <div class="sparkle-line">
-      <div class="line"></div><div class="dot"></div><div class="line"></div>
+  <!-- ══ SPLASH ══ -->
+  <div id="splash" onclick="enterPage()">
+    <div class="splash-petals" id="splashPetals"></div>
+    <svg class="splash-rose" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+      <path d="M80 140 Q76 120 72 100 Q68 85 70 70" stroke="#6b8a4e" stroke-width="3" fill="none"
+        stroke-linecap="round" />
+      <path d="M73 95 Q60 85 55 72 Q68 76 73 95Z" fill="#7aaa5a" opacity="0.85" />
+      <path d="M71 108 Q82 98 90 90 Q84 103 71 108Z" fill="#6b9950" opacity="0.75" />
+      <ellipse cx="80" cy="62" rx="22" ry="26" fill="#d4607a" opacity="0.45" transform="rotate(-20,80,62)" />
+      <ellipse cx="80" cy="62" rx="22" ry="26" fill="#d4607a" opacity="0.45" transform="rotate(20,80,62)" />
+      <ellipse cx="80" cy="62" rx="22" ry="26" fill="#d4607a" opacity="0.45" transform="rotate(70,80,62)" />
+      <ellipse cx="80" cy="60" rx="17" ry="21" fill="#e06b84" opacity="0.6" transform="rotate(0,80,60)" />
+      <ellipse cx="80" cy="60" rx="17" ry="21" fill="#e06b84" opacity="0.6" transform="rotate(45,80,60)" />
+      <ellipse cx="80" cy="60" rx="17" ry="21" fill="#e06b84" opacity="0.6" transform="rotate(90,80,60)" />
+      <ellipse cx="80" cy="60" rx="17" ry="21" fill="#e06b84" opacity="0.6" transform="rotate(135,80,60)" />
+      <ellipse cx="80" cy="58" rx="12" ry="15" fill="#ea7a90" transform="rotate(22,80,58)" />
+      <ellipse cx="80" cy="58" rx="12" ry="15" fill="#ea7a90" transform="rotate(67,80,58)" />
+      <ellipse cx="80" cy="58" rx="12" ry="15" fill="#ea7a90" transform="rotate(112,80,58)" />
+      <circle cx="80" cy="56" r="9" fill="#f0a0b0" />
+      <circle cx="80" cy="56" r="5" fill="#f5c0cc" />
+      <circle cx="80" cy="55" r="2.5" fill="#fadddd" />
+      <circle cx="78" cy="53" r="1" fill="#f5e6cc" opacity="0.9" />
+      <circle cx="82" cy="54" r="0.8" fill="#d4a259" opacity="0.8" />
+    </svg>
+    <p class="splash-name">Reshmi</p>
+    <p class="splash-bday">It's your birthday! 🎂</p>
+    <p class="splash-sub">something magical awaits</p>
+    <div class="splash-btn">✦ &nbsp; Open Your Gift &nbsp; ✦</div>
+    <div class="splash-hearts">
+      <span>&#9829;</span><span>&#9829;</span><span>&#9829;</span>
     </div>
-    <h1 class="main-title">Happy Birthday<br><span>Reshmi</span></h1>
-    <p class="sub-title">— you're turning twenty —</p>
-    <div class="age-tag" >20 · a whole new chapter ✦</div>
   </div>
 
-  <!-- PHOTO FRAME -->
-  <div class="photo-section">
-    <div class="photo-frame-wrap">
-      <div class="photo-glow"></div>
-      <div class="photo-ring"></div>
-      <div class="photo-ring-2"></div>
-      <div class="photo-frame">
-        <!--
-          ════════════════════════════════════
-          REPLACE src WITH RESHMI'S PHOTO PATH
-          e.g. src="reshmi.jpg"
-          ════════════════════════════════════
-        -->
-        <img src="image/main.jpg" alt="Reshmi"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div style="display:none; flex-direction:column; align-items:center; gap:8px; color:var(--rose); opacity:0.55;">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-          </svg>
-          <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;">Reshmi</span>
+  <!-- ══ MUSIC BTN ══ -->
+  <div id="musicBtn" onclick="toggleMusic()" title="Music">
+    <div class="music-bars" id="musicBars">
+      <div class="music-bar"></div>
+      <div class="music-bar"></div>
+      <div class="music-bar"></div>
+      <div class="music-bar"></div>
+    </div>
+  </div>
+
+  <!-- ══ AUDIO ══ -->
+  <audio id="bgMusic" loop preload="auto"></audio>
+
+  <!-- ══ BG ══ -->
+  <div class="bg-glow g1"></div>
+  <div class="bg-glow g2"></div>
+  <div class="bg-glow g3"></div>
+  <canvas id="petalCanvas"></canvas>
+  <canvas id="fireworkCanvas"></canvas>
+
+  <!-- ══════════════════ MAIN PAGE ══════════════════ -->
+  <div id="mainPage">
+    <div class="container">
+
+      <!-- HEADER -->
+      <div class="header">
+        <p class="pre-title">Today Is Her Day ✦</p>
+        <div class="sparkle-line">
+          <div class="line"></div>
+          <div class="dot"></div>
+          <div class="line"></div>
+        </div>
+        <h1 class="main-title">Happy Birthday<br><span>Reshmi</span></h1>
+        <p class="sub-title">— welcome to Twenty One —</p>
+        <div class="age-tag">21 · a whole new chapter ✦</div>
+      </div>
+
+      <!-- CELEBRATION BANNER -->
+      <div class="celebration-banner">
+        <p class="cb-top">✦ &nbsp; aaj ka din sirf tera hai &nbsp; ✦</p>
+        <div class="cb-age-bubble">
+          🎉 &nbsp; Twenty One & Blooming &nbsp; 🎉
         </div>
       </div>
+
+      <!-- PHOTO FRAME -->
+      <div class="photo-section">
+        <div class="photo-frame-wrap">
+          <div class="photo-glow"></div>
+          <div class="photo-ring"></div>
+          <div class="photo-ring-2"></div>
+          <div class="photo-frame">
+            <img src="image/main.jpg" alt="Reshmi"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div style="display:none;flex-direction:column;align-items:center;gap:8px;color:var(--rose);opacity:0.55;">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+              </svg>
+              <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;">Reshmi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BIRTHDAY CAKE -->
+      <div class="cake-section">
+        <p class="cake-label">tap the candles to make a wish</p>
+        <div class="cake-wrap" onclick="blowCandles()">
+          <svg class="cake-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Plate -->
+            <ellipse cx="100" cy="168" rx="72" ry="10" fill="#e8c9a0" opacity="0.5" />
+            <!-- Cake bottom tier -->
+            <rect x="28" y="130" width="144" height="42" rx="8" fill="#f0a0b0" />
+            <rect x="28" y="128" width="144" height="12" rx="4" fill="#f5bec8" />
+            <!-- Cake middle tier -->
+            <rect x="44" y="96" width="112" height="38" rx="7" fill="#ea7a90" />
+            <rect x="44" y="94" width="112" height="12" rx="4" fill="#f0a0b0" />
+            <!-- Cake top tier -->
+            <rect x="62" y="68" width="76" height="32" rx="6" fill="#e06b84" />
+            <rect x="62" y="66" width="76" height="12" rx="4" fill="#ea7a90" />
+            <!-- Frosting drips bottom -->
+            <path
+              d="M32 130 Q38 118 44 130 Q50 118 56 130 Q62 118 68 130 Q74 118 80 130 Q86 118 92 130 Q98 118 104 130 Q110 118 116 130 Q122 118 128 130 Q134 118 140 130 Q146 118 152 130 Q158 118 164 130 Q170 118 168 130"
+              fill="white" opacity="0.7" />
+            <!-- Frosting drips top tier -->
+            <path d="M64 68 Q70 58 76 68 Q82 58 88 68 Q94 58 100 68 Q106 58 112 68 Q118 58 124 68 Q130 58 136 68"
+              fill="white" opacity="0.65" />
+            <!-- Decorations -->
+            <circle cx="55" cy="148" r="5" fill="#d4a259" />
+            <circle cx="78" cy="155" r="4" fill="#f7b8c8" />
+            <circle cx="100" cy="150" r="5" fill="#d4a259" />
+            <circle cx="122" cy="155" r="4" fill="#f7b8c8" />
+            <circle cx="145" cy="148" r="5" fill="#d4a259" />
+            <circle cx="65" cy="112" r="4" fill="#f5e6cc" />
+            <circle cx="100" cy="108" r="4" fill="#f5e6cc" />
+            <circle cx="135" cy="112" r="4" fill="#f5e6cc" />
+            <!-- "20" on cake -->
+            <text x="100" y="90" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="18"
+              fill="white" font-style="italic" opacity="0.9">20</text>
+            <!-- Candles -->
+            <rect x="76" y="44" width="8" height="24" rx="3" fill="#c8536a" id="candle1" />
+            <rect x="96" y="38" width="8" height="30" rx="3" fill="#7a2d3e" id="candle2" />
+            <rect x="116" y="44" width="8" height="24" rx="3" fill="#d4a259" id="candle3" />
+            <!-- Wicks -->
+            <line x1="80" y1="44" x2="80" y2="40" stroke="#5a3020" stroke-width="1.5" id="wick1" />
+            <line x1="100" y1="38" x2="100" y2="34" stroke="#5a3020" stroke-width="1.5" id="wick2" />
+            <line x1="120" y1="44" x2="120" y2="40" stroke="#5a3020" stroke-width="1.5" id="wick3" />
+            <!-- Flames -->
+            <g id="flame1" class="flame">
+              <ellipse cx="80" cy="36" rx="5" ry="7" fill="#f97316" opacity="0.9" />
+              <ellipse cx="80" cy="37" rx="3" ry="5" fill="#fbbf24" />
+              <ellipse cx="80" cy="38" rx="1.5" ry="3" fill="white" opacity="0.8" />
+            </g>
+            <g id="flame2" class="flame">
+              <ellipse cx="100" cy="30" rx="5" ry="7" fill="#f97316" opacity="0.9" />
+              <ellipse cx="100" cy="31" rx="3" ry="5" fill="#fbbf24" />
+              <ellipse cx="100" cy="32" rx="1.5" ry="3" fill="white" opacity="0.8" />
+            </g>
+            <g id="flame3" class="flame">
+              <ellipse cx="120" cy="36" rx="5" ry="7" fill="#f97316" opacity="0.9" />
+              <ellipse cx="120" cy="37" rx="3" ry="5" fill="#fbbf24" />
+              <ellipse cx="120" cy="38" rx="1.5" ry="3" fill="white" opacity="0.8" />
+            </g>
+          </svg>
+        </div>
+        <p class="cake-tap-hint" id="cakeTapHint">tap the cake to blow candles 🕯️</p>
+        <p class="blow-msg" id="blowMsg"></p>
+      </div>
+
+      <!-- DYNAMIC QUOTE -->
+      <div class="refresh-quote">
+        <div class="rq-label">A message just for Reshmi</div>
+        <p class="rq-text" id="dynamicQuote"></p>
+        <div class="rq-refresh" onclick="changeQuote()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 4v6h6M23 20v-6h-6" />
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15" />
+          </svg>
+          <span>new message</span>
+        </div>
+      </div>
+
+      <div class="divider">
+        <div class="divider-line"></div><span class="divider-icon">✦</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- SEALED LETTER -->
+      <div class="letter-section">
+        <div class="letter-wrap" id="letterWrap" onclick="openLetter()">
+          <div class="letter-closed" id="letterClosed">
+            <div class="envelope-flap"></div>
+            <div class="letter-seal">💌</div>
+            <p>A letter sealed with love</p>
+            <h3>For Reshmi, on her 20th</h3>
+            <p class="open-hint">tap to open ✦</p>
+          </div>
+          <div class="letter-open" id="letterOpen">
+            <div class="letter-rose-deco">🌹</div>
+            <p class="letter-dear">My dearest Reshmi,</p>
+            <p class="letter-body" id="letterBody"></p>
+            <p class="letter-sign">— written from the heart, just for you ✦</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hearts-row">
+        <span class="heart">&#9829;</span><span class="heart">&#9829;</span><span class="heart">&#9829;</span>
+      </div>
+
+      <div class="scroll-hint">
+        <span>scroll for wishes</span>
+        <div class="scroll-arrow"></div>
+      </div>
+
+      <div class="divider" style="margin-top:28px">
+        <div class="divider-line"></div><span class="divider-icon">✦</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- WISHES -->
+      <div class="wishes-section">
+        <div class="wishes-title">
+          <span class="tag">birthday wishes just for her</span>
+          <h2>For Reshmi, With Love</h2>
+        </div>
+
+        <div class="wish-card">
+          <div class="accent-bar"></div><span class="wish-icon">🌹</span>
+          <p class="wish-text" id="wish0"></p>
+          <p class="wish-from">— with all my love ✦</p>
+        </div>
+
+        <div class="wish-card gallery-wish">
+          <img class="gallery-img-full" src="image/main2.jpg" alt="A memory" onerror="this.style.display='none'">
+          <p class="gallery-caption">A moment I always smile thinking about ✦</p>
+        </div>
+
+        <div class="wish-card">
+          <div class="accent-bar"></div><span class="wish-icon">✨</span>
+          <p class="wish-text" id="wish1"></p>
+          <p class="wish-from">— forever yours ✦</p>
+        </div>
+
+        <div class="wish-card">
+          <div class="accent-bar"></div><span class="wish-icon">🌸</span>
+          <p class="wish-text" id="wish2"></p>
+          <p class="wish-from">— your biggest fan ✦</p>
+        </div>
+
+        <div class="wish-card gallery-wish">
+          <img class="gallery-img-full" src="image/main3.jpg" alt="Another memory" onerror="this.style.display='none'">
+          <p class="gallery-caption">You make every moment magical 🌙</p>
+        </div>
+
+        <div class="wish-card">
+          <div class="accent-bar"></div><span class="wish-icon">💫</span>
+          <p class="wish-text" id="wish3"></p>
+          <p class="wish-from">— always and always ✦</p>
+        </div>
+
+        <div class="wish-card">
+          <div class="accent-bar"></div><span class="wish-icon">🕯️</span>
+          <p class="wish-text" id="wish4"></p>
+          <p class="wish-from">— counting every blessing ✦</p>
+        </div>
+
+        <div class="wish-card gallery-wish">
+          <img class="gallery-img-full" src="image/main4.jpg" alt="Another memory" onerror="this.style.display='none'">
+          <p class="gallery-caption">Twenty One looks absolutely beautiful on you 🌹</p>
+        </div>
+
+        <div class="wish-card">
+          <div class="accent-bar"></div><span class="wish-icon">🌙</span>
+          <p class="wish-text" id="wish5"></p>
+          <p class="wish-from">— wishing you all the stars ✦</p>
+        </div>
+      </div>
+
+      <div class="divider">
+        <div class="divider-line"></div><span class="divider-icon">✦</span>
+        <div class="divider-line"></div>
+      </div>
+      <p class="footer-text">Made with love, just for Reshmi ♥</p>
     </div>
   </div>
 
-  <!-- DYNAMIC QUOTE -->
-  <div class="refresh-quote">
-    <div class="rq-label">A message just for Reshmi</div>
-    <p class="rq-text" id="dynamicQuote"></p>
-    <div class="rq-refresh" onclick="changeQuote()">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
-      </svg>
-      <span>new message</span>
-    </div>
-  </div>
+  <script>
+    /* ══════════════════════════════════════════
+       WISHES POOL
+    ══════════════════════════════════════════ */
+    const allWishes = [
+      "Reshmi, every single day leading to yours felt like petals falling before a bloom. Now the bloom is here — and you are more beautiful than any rose.",
+      "There are stars that shine simply because you exist, Reshmi. On this day that belongs entirely to you, may the universe give back every bit of the light you so freely give to others.",
+      "You are the kind of person who makes ordinary days feel extraordinary, Reshmi. Happy birthday to the one who turned my whole world into something worth celebrating.",
+      "May this birthday wrap around you like the warmest hug on the coldest night. You deserve every wish, every candle, every single moment of joy today, Reshmi.",
+      "Reshmi, you carry kindness in your hands and warmth in your laugh. The world is genuinely better, softer, and more beautiful because you are in it.",
+      "If I could bottle the feeling of being near you, it would be the greatest gift anyone has ever given. Today I want to give that feeling back — you are so deeply celebrated.",
+      "Twenty One years of Reshmi — and the world is infinitely more beautiful for every single one of them. Here is to you, to this new chapter, to everything wonderful that is coming your way.",
+      "Here is to the girl who makes magic out of mornings, poetry out of ordinary days, and a home out of every place she walks into. Here is to Reshmi.",
+      "Reshmi, you are not just a wish — you are the answer to every wish I have ever made. Happy birthday, my favourite person.",
+      "May today feel like the first page of the most beautiful chapter you have ever read. You have so many more blooms ahead of you.",
+      "The world became warmer the day you were born. Every sunrise since has been quietly celebrating you, Reshmi.",
+      "You deserve a birthday as breathtaking as the way you take mine away. Here is to a year that finally matches your beauty.",
+      "They say some people are made of stardust. I believe it entirely when I look at you, Reshmi. Happy twentieth birthday.",
+      "Another year and somehow even more wonderful. How is that possible? Only you could manage it, Reshmi.",
+      "If flowers could speak, every rose would say your name today. Happy birthday to the one who blooms in every season.",
+      "Reshmi, the best parts of every day are the moments that somehow remind me of you. Thank you for making my heart feel so full.",
+      "On the day the universe decided to send someone extraordinary into this world, it chose to send Reshmi. I am the luckiest for knowing you.",
+      "You turned twenty one today, Reshmi — and I have never been more certain that the best years of your life are still ahead, waiting for you like unopened gifts."
+    ];
 
-  <!-- DATE -->
-  <div class="date-display">
-    <div class="date-num">29</div>
-    <div class="date-info">
-      <span class="date-month">April</span>
-      <span class="date-year">2026 · Her Day</span>
-    </div>
-  </div>
+    const letters = [
+      "Today you turn twenty one, and I have been trying to find words big enough to hold everything I feel. I don't think words exist. What I know is this — you are one of the rarest people I have ever met. The kind who makes everyone around them feel seen, warm, and somehow more alive. On this birthday, I hope you feel even a fraction of what you give to others. You deserve every good thing.",
+      "Reshmi, there are people who walk into your life and quietly rearrange everything. You are that person for me. You don't even know how much. On your twentieth birthday, I just want you to know — you are loved more deeply than you realise, celebrated more sincerely than words can carry, and wished all the happiness this world holds.",
+      "Dear Reshmi, twenty one is such a beautiful number. It means you have spent two whole decades being exactly you — curious, warm, and impossibly wonderful. I hope this year brings you every dream you have whispered to yourself at night. I hope the universe conspires entirely in your favour. And I hope that somewhere in all of it, you know — someone out here is rooting for you with their whole heart."
+    ];
 
-  <div class="divider"><div class="divider-line"></div><span class="divider-icon">✦</span><div class="divider-line"></div></div>
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
 
-  <!-- COUNTDOWN -->
-  <div class="countdown-section">
-    <p class="countdown-label">Counting down to Reshmi's special day</p>
-    <div class="countdown-grid" id="countdownGrid">
-      <div class="count-card"><span class="count-number" id="days">--</span><span class="count-unit">Days</span></div>
-      <div class="count-card"><span class="count-number" id="hours">--</span><span class="count-unit">Hours</span></div>
-      <div class="count-card"><span class="count-number" id="minutes">--</span><span class="count-unit">Mins</span></div>
-      <div class="count-card"><span class="count-number" id="seconds">--</span><span class="count-unit">Secs</span></div>
-    </div>
-    <div class="progress-wrap" id="progressWrap">
-      <div class="progress-label"><span>Today</span><span>Reshmi's Birthday ✦</span></div>
-      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-    </div>
-    <div class="birthday-now" id="birthdayNow">
-      <div class="birthday-big">Happy Birthday,<br><em>Reshmi!</em></div>
-    </div>
-  </div>
+    const picked = shuffle(allWishes);
+    for (let i = 0; i < 6; i++) document.getElementById('wish' + i).textContent = picked[i];
 
-  <div class="hearts-row">
-    <span class="heart">&#9829;</span><span class="heart">&#9829;</span><span class="heart">&#9829;</span>
-  </div>
+    let qIdx = Math.floor(Math.random() * allWishes.length);
+    document.getElementById('dynamicQuote').textContent = allWishes[qIdx];
 
-  <div class="scroll-hint" id="scrollHint">
-    <span>scroll for wishes</span>
-    <div class="scroll-arrow"></div>
-  </div>
+    document.getElementById('letterBody').textContent = letters[Math.floor(Math.random() * letters.length)];
 
-  <div class="divider" style="margin-top:28px"><div class="divider-line"></div><span class="divider-icon">✦</span><div class="divider-line"></div></div>
+    function changeQuote() {
+      const el = document.getElementById('dynamicQuote');
+      el.style.opacity = '0';
+      setTimeout(() => {
+        qIdx = (qIdx + 1) % allWishes.length;
+        el.textContent = allWishes[qIdx];
+        el.style.opacity = '1';
+      }, 400);
+    }
 
-  <!-- WISHES SECTION -->
-  <div class="wishes-section">
-    <div class="wishes-title">
-      <span class="tag">birthday wishes just for her</span>
-      <h2>For Reshmi, With Love</h2>
-    </div>
+    /* ══ LETTER ══ */
+    let letterOpened = false;
+    function openLetter() {
+      if (letterOpened) return;
+      letterOpened = true;
+      document.getElementById('letterClosed').style.display = 'none';
+      document.getElementById('letterOpen').style.display = 'block';
+      document.getElementById('letterWrap').style.cursor = 'default';
+      launchSmallConfetti();
+    }
 
-    <div class="wish-card"><div class="accent-bar"></div><span class="wish-icon">🌹</span><p class="wish-text" id="wish0"></p><p class="wish-from">— with all my love ✦</p></div>
+    /* ══ CAKE / CANDLES ══ */
+    let candlesBlown = 0;
+    const totalCandles = 3;
+    const blowMessages = [
+      "Make a wish, Reshmi! ✨",
+      "Two down, one to go... 🌸",
+      "All candles out! May every wish come true! 🎉"
+    ];
 
-    <!-- MEMORY PHOTO 1 — replace src="..." with your image file -->
-    <div class="wish-card gallery-wish">
-      <img class="gallery-img-full" src="image/main2.jpg" alt="A memory"
-        onerror="this.style.display='none'">
-      <p class="gallery-caption">A moment I always smile thinking about ✦</p>
-    </div>
+    function blowCandles() {
+      if (candlesBlown >= totalCandles) return;
+      const flameIds = ['flame1', 'flame2', 'flame3'];
+      document.getElementById(flameIds[candlesBlown]).classList.add('out');
+      const msg = document.getElementById('blowMsg');
+      msg.textContent = blowMessages[candlesBlown];
+      msg.classList.add('show');
+      candlesBlown++;
+      if (candlesBlown === totalCandles) {
+        document.getElementById('cakeTapHint').style.display = 'none';
+        launchConfetti(80);
+        setTimeout(() => launchConfetti(60), 1500);
+      }
+    }
 
-    <div class="wish-card"><div class="accent-bar"></div><span class="wish-icon">✨</span><p class="wish-text" id="wish1"></p><p class="wish-from">— forever yours ✦</p></div>
+    /* ══ MUSIC ══ */
+    const audio = document.getElementById('bgMusic');
+    const songs = [
+      "audio/videoplayback (1).m4a",
+      "audio/videoplayback (2).m4a",
+      "audio/videoplayback (3).m4a",
+      "audio/dilkoteri.mp3",
+      "audio/tose-naina.mp3"
+    ];
+    audio.src = songs[Math.floor(Math.random() * songs.length)];
+    let musicPlaying = false;
 
-    <div class="wish-card"><div class="accent-bar"></div><span class="wish-icon">🌸</span><p class="wish-text" id="wish2"></p><p class="wish-from">— your biggest fan ✦</p></div>
+    /* ══ SPLASH PETALS ══ */
+    const splashColors = ['#f7b8c8', '#e8849a', '#d4607a', '#f5d5de', '#f5e0a0', '#d4a259', '#fce8ee'];
+    const splashPetals = document.getElementById('splashPetals');
+    for (let i = 0; i < 24; i++) {
+      const sp = document.createElement('div');
+      sp.className = 'sp';
+      const sz = 8 + Math.random() * 14;
+      sp.style.cssText = `left:${Math.random() * 100}%;width:${sz}px;height:${sz * 0.55}px;background:${splashColors[Math.floor(Math.random() * splashColors.length)]};animation-duration:${4 + Math.random() * 5}s;animation-delay:${Math.random() * 4}s;transform:rotate(${Math.random() * 360}deg);`;
+      splashPetals.appendChild(sp);
+    }
 
-    <!-- MEMORY PHOTO 2 — replace src="..." with your image file -->
-    <div class="wish-card gallery-wish">
-      <img class="gallery-img-full" src="image/main3.jpg" alt="Another memory"
-        onerror="this.style.display='none'">
-      <p class="gallery-caption">You make every moment magical 🌙</p>
-    </div>
+    function enterPage() {
+      audio.volume = 0;
+      audio.play().then(() => { musicPlaying = true; fadeInMusic(); }).catch(() => { });
+      document.getElementById('splash').classList.add('hide');
+      document.getElementById('mainPage').classList.add('show');
+      setTimeout(() => { document.getElementById('splash').style.display = 'none'; }, 1000);
+      // Start continuous confetti after enter
+      setTimeout(() => startContinuousConfetti(), 1200);
+      // Start fireworks
+      setTimeout(() => startFireworks(), 1200);
+    }
 
-    <div class="wish-card"><div class="accent-bar"></div><span class="wish-icon">💫</span><p class="wish-text" id="wish3"></p><p class="wish-from">— always and always ✦</p></div>
+    function fadeInMusic() {
+      let v = 0;
+      const iv = setInterval(() => {
+        v = Math.min(v + 0.02, 0.45); audio.volume = v;
+        if (v >= 0.45) clearInterval(iv);
+      }, 150);
+    }
 
-    <div class="wish-card"><div class="accent-bar"></div><span class="wish-icon">🕯️</span><p class="wish-text" id="wish4"></p><p class="wish-from">— counting every blessing ✦</p></div>
+    function toggleMusic() {
+      const bars = document.querySelectorAll('.music-bar');
+      if (musicPlaying) {
+        audio.pause(); musicPlaying = false;
+        bars.forEach(b => b.classList.add('paused'));
+      } else {
+        audio.play(); musicPlaying = true;
+        bars.forEach(b => b.classList.remove('paused'));
+      }
+    }
 
-    <!-- MEMORY PHOTO 3 — replace src="..." with your image file -->
-    <div class="wish-card gallery-wish">
-      <img class="gallery-img-full" src="image/main4.jpg" alt="Another memory"
-        onerror="this.style.display='none'">
-      <p class="gallery-caption">Twenty looks absolutely beautiful on you 🌹</p>
-    </div>
+    /* ══ CONFETTI ══ */
+    const confettiColors = ['#c8536a', '#d4a259', '#f7b8c8', '#ea7a90', '#7a2d3e', '#f5e0a0', '#e06b84', '#fce8ee', '#ffffff'];
 
-    <div class="wish-card"><div class="accent-bar"></div><span class="wish-icon">🌙</span><p class="wish-text" id="wish5"></p><p class="wish-from">— wishing you all the stars ✦</p></div>
+    function launchConfetti(count) {
+      for (let i = 0; i < (count || 50); i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        const sz = 5 + Math.random() * 9;
+        const startX = Math.random() * 100;
+        el.style.cssText = `left:${startX}vw;top:-10px;background:${confettiColors[Math.floor(Math.random() * confettiColors.length)]};animation-duration:${2.5 + Math.random() * 2.5}s;animation-delay:${Math.random() * 1.5}s;width:${sz}px;height:${sz}px;border-radius:${Math.random() > .5 ? '50%' : '2px'};transform:translateY(0) rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 5500);
+      }
+    }
 
-  </div>
+    function launchSmallConfetti() {
+      launchConfetti(40);
+    }
 
-  <div class="divider"><div class="divider-line"></div><span class="divider-icon">✦</span><div class="divider-line"></div></div>
-  <p class="footer-text">Made with love, just for Reshmi ♥</p>
+    let confettiTimer = null;
+    function startContinuousConfetti() {
+      launchConfetti(30);
+      confettiTimer = setInterval(() => launchConfetti(18), 3000);
+      // Stop after 30 seconds to not overwhelm
+      setTimeout(() => { if (confettiTimer) clearInterval(confettiTimer); }, 30000);
+    }
 
-</div>
-</div><!-- /mainPage -->
+    /* ══ FIREWORKS ══ */
+    const fwCanvas = document.getElementById('fireworkCanvas');
+    const fwCtx = fwCanvas.getContext('2d');
+    let fwW, fwH;
+    function fwResize() { fwW = fwCanvas.width = window.innerWidth; fwH = fwCanvas.height = window.innerHeight; }
+    fwResize(); window.addEventListener('resize', fwResize);
 
-<script>
-// ═══════════════════════════════════════════
-// WISHES POOL — personalised for Reshmi
-// ═══════════════════════════════════════════
-const allWishes = [
-  "Reshmi, every single day leading to yours feels like petals falling gently before the bloom. You are sunshine wrapped in roses — a soul that makes the world softer and every room brighter.",
-  "There are stars that shine simply because you exist, Reshmi. On this day that belongs entirely to you, I hope the universe gives back every bit of the light you so freely give to others.",
-  "You are the kind of person who makes ordinary days feel extraordinary, Reshmi. Happy birthday to the one who turned my whole world into something worth celebrating.",
-  "May this birthday wrap around you like the warmest hug on the coldest night. You deserve every wish, every candle, every single moment of joy today, Reshmi.",
-  "Reshmi, you carry kindness in your hands and warmth in your laugh. The world is genuinely better, softer, and more beautiful because you are in it.",
-  "If I could bottle the feeling of being loved by you, it would be the greatest gift anyone has ever given. Today I want to give that feeling back — you are so deeply celebrated, Reshmi.",
-  "Years go by but what never changes is how much you mean. On your twentieth birthday, I want you to feel every ounce of that love all at once.",
-  "Here is to the girl who makes magic out of mornings, poetry out of ordinary days, and a home out of every place she walks into. Here is to Reshmi.",
-  "Reshmi, you are not just a wish — you are the answer to every wish I have ever made. Happy birthday, my favourite person.",
-  "May today feel like the first page of the most beautiful chapter, Reshmi. You have so many more blooms ahead of you.",
-  "The world became warmer the day you were born. Every sunrise since has been quietly celebrating you, Reshmi.",
-  "You deserve a birthday as breathtaking as the way you take mine away. Here is to a year that finally matches your beauty, Reshmi.",
-  "They say some people are made of stardust. I believe it entirely when I look at you, Reshmi. Happy twentieth birthday.",
-  "Another year and somehow even more wonderful. How is that possible? Only you could manage it, Reshmi.",
-  "If flowers could speak, every rose would say your name today. Happy birthday to the one who blooms in every season.",
-  "Reshmi, the best parts of every day are the moments that somehow remind me of you. Happy birthday to the reason my heart feels full.",
-  "On the day the universe decided to send someone extraordinary into this world, it chose to send Reshmi. I am the luckiest for knowing you.",
-  "Twenty years of Reshmi — and the world is infinitely more beautiful for it. Here is to you, to this new chapter, and to everything wonderful that is coming your way."
-];
+    let particles = [];
+    let fwActive = false;
 
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
+    function createFirework() {
+      const x = 0.15 * fwW + Math.random() * 0.7 * fwW;
+      const y = 0.1 * fwH + Math.random() * 0.4 * fwH;
+      const colors = ['#f7b8c8', '#c8536a', '#d4a259', '#ea7a90', '#ffffff', '#f5e0a0', '#e06b84'];
+      const col = colors[Math.floor(Math.random() * colors.length)];
+      for (let i = 0; i < 48; i++) {
+        const angle = (i / 48) * Math.PI * 2;
+        const speed = 1.5 + Math.random() * 3.5;
+        particles.push({
+          x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+          alpha: 1, color: col,
+          size: 1.5 + Math.random() * 2.5,
+          decay: 0.013 + Math.random() * 0.012
+        });
+      }
+    }
 
-// Pick 6 random wishes for cards
-const picked = shuffle(allWishes);
-for (let i = 0; i < 6; i++) document.getElementById('wish' + i).textContent = picked[i];
+    let lastFw = 0;
+    function animateFireworks(ts) {
+      if (!fwActive) return;
+      fwCtx.clearRect(0, 0, fwW, fwH);
+      if (ts - lastFw > 1200) { createFirework(); lastFw = ts; }
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        p.vy += 0.045; // gravity
+        p.alpha -= p.decay;
+        p.vx *= 0.98; p.vy *= 0.98;
+        if (p.alpha > 0) {
+          fwCtx.save();
+          fwCtx.globalAlpha = Math.max(0, p.alpha);
+          fwCtx.fillStyle = p.color;
+          fwCtx.beginPath();
+          fwCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          fwCtx.fill();
+          fwCtx.restore();
+        }
+      });
+      particles = particles.filter(p => p.alpha > 0);
+      requestAnimationFrame(animateFireworks);
+    }
 
-// Dynamic top quote — random each load
-let qIdx = Math.floor(Math.random() * allWishes.length);
-document.getElementById('dynamicQuote').textContent = allWishes[qIdx];
+    function startFireworks() {
+      fwActive = true;
+      requestAnimationFrame(animateFireworks);
+      // Fireworks for 45 seconds then gentle mode
+      setTimeout(() => { fwActive = false; fwCtx.clearRect(0, 0, fwW, fwH); }, 45000);
+    }
 
-function changeQuote() {
-  const el = document.getElementById('dynamicQuote');
-  el.style.opacity = '0';
-  setTimeout(() => {
-    qIdx = (qIdx + 1) % allWishes.length;
-    el.textContent = allWishes[qIdx];
-    el.style.opacity = '1';
-  }, 400);
-}
+    /* ══ SCROLL REVEAL ══ */
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.wish-card').forEach(c => revealObserver.observe(c));
 
-// ═══════════════════════════════════════════
-// SPLASH & MUSIC
-// ═══════════════════════════════════════════
-const audio = document.getElementById('bgMusic');
-
-  const songs = [
-    // "audio/Tum Ho Toh - Saiyaara_128-(PagalWorld.Org.Im).mp3",
-    "audio/videoplayback (1).m4a",
-    "audio/videoplayback (2).m4a",
-    "audio/videoplayback (3).m4a",
-    "audio/dilkoteri.mp3",
-    "audio/tose-naina.mp3"
-    // "audio/videoplayback.m4a",
-  ];
-
-  // Random song every refresh
-  const randomSong = songs[Math.floor(Math.random() * songs.length)];
-  audio.src = randomSong;
-
-
-let musicPlaying = false;
-
-// Animate splash petals
-const splashColors = ['#f7b8c8','#e8849a','#d4607a','#f5d5de','#f5e0a0','#d4a259','#fce8ee'];
-const splashPetals = document.getElementById('splashPetals');
-for (let i = 0; i < 22; i++) {
-  const sp = document.createElement('div');
-  sp.className = 'sp';
-  const sz = 8 + Math.random() * 14;
-  sp.style.cssText = `
-    left:${Math.random()*100}%;
-    width:${sz}px; height:${sz * 0.55}px;
-    background:${splashColors[Math.floor(Math.random()*splashColors.length)]};
-    animation-duration:${4 + Math.random()*5}s;
-    animation-delay:${Math.random()*4}s;
-    transform:rotate(${Math.random()*360}deg);
-  `;
-  splashPetals.appendChild(sp);
-}
-
-function enterPage() {
-  // Start music with gradual fade-in
-  audio.volume = 0;
-  audio.play().then(() => {
-    musicPlaying = true;
-    fadeInMusic();
-  }).catch(() => {
-    // Autoplay blocked — music button still works
-  });
-
-  // Hide splash, show page
-  document.getElementById('splash').classList.add('hide');
-  document.getElementById('mainPage').classList.add('show');
-
-  setTimeout(() => {
-    document.getElementById('splash').style.display = 'none';
-  }, 1000);
-}
-
-function fadeInMusic() {
-  let v = 0;
-  const interval = setInterval(() => {
-    v = Math.min(v + 0.02, 0.45);
-    audio.volume = v;
-    if (v >= 0.45) clearInterval(interval);
-  }, 150);
-}
-
-function toggleMusic() {
-  const bars = document.querySelectorAll('.music-bar');
-  if (musicPlaying) {
-    audio.pause();
-    musicPlaying = false;
-    bars.forEach(b => b.classList.add('paused'));
-  } else {
-    audio.play();
-    musicPlaying = true;
-    bars.forEach(b => b.classList.remove('paused'));
-  }
-}
-
-// ═══════════════════════════════════════════
-// COUNTDOWN — client local time, April 29
-// ═══════════════════════════════════════════
-function getBirthdayTarget() {
-  const now = new Date();
-  let t = new Date(now.getFullYear(), 3, 29, 0, 0, 0, 0); // month 3 = April
-  if (t <= now) t.setFullYear(t.getFullYear() + 1);
-  return t;
-}
-const bdayTarget = getBirthdayTarget();
-const startMs = bdayTarget.getTime() - 30 * 24 * 60 * 60 * 1000;
-function pad(n) { return String(n).padStart(2, '0'); }
-
-function updateCountdown() {
-  const diff = bdayTarget - new Date();
-  if (diff <= 0) {
-    document.getElementById('countdownGrid').style.display = 'none';
-    document.getElementById('progressWrap').style.display = 'none';
-    document.getElementById('birthdayNow').style.display = 'flex';
-    document.getElementById('scrollHint').style.display = 'none';
-    launchConfetti();
-    return;
-  }
-  const s = Math.floor(diff / 1000);
-  document.getElementById('days').textContent    = Math.floor(s / 86400);
-  document.getElementById('hours').textContent   = pad(Math.floor((s % 86400) / 3600));
-  document.getElementById('minutes').textContent = pad(Math.floor((s % 3600) / 60));
-  document.getElementById('seconds').textContent = pad(s % 60);
-  const pct = Math.min(100, Math.max(0, ((Date.now() - startMs) / (bdayTarget - startMs)) * 100));
-  document.getElementById('progressFill').style.width = pct.toFixed(1) + '%';
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-// ═══════════════════════════════════════════
-// CONFETTI
-// ═══════════════════════════════════════════
-function launchConfetti() {
-  const cols = ['#c8536a','#d4a259','#f7b8c8','#ea7a90','#7a2d3e','#f5e0a0','#e06b84','#fce8ee'];
-  for (let i = 0; i < 70; i++) {
-    const el = document.createElement('div');
-    el.className = 'confetti-piece';
-    const sz = 6 + Math.random() * 8;
-    el.style.cssText = `left:${Math.random()*100}vw;background:${cols[Math.floor(Math.random()*cols.length)]};animation-duration:${2+Math.random()*3}s;animation-delay:${Math.random()*2}s;width:${sz}px;height:${sz}px;border-radius:${Math.random()>.5?'50%':'2px'}`;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 6000);
-  }
-  setTimeout(launchConfetti, 5000);
-}
-
-// ═══════════════════════════════════════════
-// SCROLL REVEAL
-// ═══════════════════════════════════════════
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.12 });
-document.querySelectorAll('.wish-card').forEach(c => revealObserver.observe(c));
-
-// ═══════════════════════════════════════════
-// FALLING PETALS
-// ═══════════════════════════════════════════
-const canvas = document.getElementById('petalCanvas');
-const ctx = canvas.getContext('2d');
-let petals = [], W, H;
-function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-resize(); window.addEventListener('resize', resize);
-const pCols = ['#f7b8c8','#e8849a','#f5d5de','#f0c0c8','#fce8ee','#d4a259','#f5e0a0'];
-function mkPetal() {
-  return { x:Math.random()*W, y:-20, sz:6+Math.random()*10, vy:0.6+Math.random()*1.2, vx:(Math.random()-.5)*.8, r:Math.random()*360, rs:(Math.random()-.5)*1.5, op:0.35+Math.random()*.45, col:pCols[Math.floor(Math.random()*pCols.length)], w:Math.random()*Math.PI*2, ws:0.02+Math.random()*.02 };
-}
-for (let i = 0; i < 30; i++) { const p = mkPetal(); p.y = Math.random()*H; petals.push(p); }
-(function draw() {
-  ctx.clearRect(0,0,W,H);
-  petals.forEach(p => {
-    p.w += p.ws; p.x += p.vx + Math.sin(p.w)*.5; p.y += p.vy; p.r += p.rs;
-    if (p.y > H+20) Object.assign(p, mkPetal(), {y:-20});
-    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r*Math.PI/180);
-    ctx.globalAlpha=p.op; ctx.fillStyle=p.col;
-    ctx.beginPath(); ctx.ellipse(0,0,p.sz*.4,p.sz,0,0,Math.PI*2); ctx.fill(); ctx.restore();
-  });
-  requestAnimationFrame(draw);
-})();
-</script>
+    /* ══ FALLING PETALS ══ */
+    const canvas = document.getElementById('petalCanvas');
+    const ctx = canvas.getContext('2d');
+    let petals = [], W, H;
+    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    resize(); window.addEventListener('resize', resize);
+    const pCols = ['#f7b8c8', '#e8849a', '#f5d5de', '#f0c0c8', '#fce8ee', '#d4a259', '#f5e0a0'];
+    function mkPetal() {
+      return { x: Math.random() * W, y: -20, sz: 6 + Math.random() * 10, vy: 0.6 + Math.random() * 1.2, vx: (Math.random() - .5) * .8, r: Math.random() * 360, rs: (Math.random() - .5) * 1.5, op: 0.35 + Math.random() * .45, col: pCols[Math.floor(Math.random() * pCols.length)], w: Math.random() * Math.PI * 2, ws: 0.02 + Math.random() * .02 };
+    }
+    for (let i = 0; i < 30; i++) { const p = mkPetal(); p.y = Math.random() * H; petals.push(p); }
+    (function draw() {
+      ctx.clearRect(0, 0, W, H);
+      petals.forEach(p => {
+        p.w += p.ws; p.x += p.vx + Math.sin(p.w) * .5; p.y += p.vy; p.r += p.rs;
+        if (p.y > H + 20) Object.assign(p, mkPetal(), { y: -20 });
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r * Math.PI / 180);
+        ctx.globalAlpha = p.op; ctx.fillStyle = p.col;
+        ctx.beginPath(); ctx.ellipse(0, 0, p.sz * .4, p.sz, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+      });
+      requestAnimationFrame(draw);
+    })();
+  </script>
 </body>
+
 </html>
